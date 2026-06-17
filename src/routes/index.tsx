@@ -637,7 +637,3 @@ function Index() {
     </div>
   );
 }
-
-function MessageIcon() {
-  return <HeartPulse className="hidden" />;
-}
