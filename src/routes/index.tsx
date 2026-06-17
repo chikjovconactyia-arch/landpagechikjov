@@ -609,7 +609,7 @@ function Index() {
               </li>
               <li>
                 <a href={waLink(waMessages.agendar)} target="_blank" rel="noopener" className="flex items-center gap-3 hover:text-accent">
-                  <MessageIcon /> WhatsApp
+                  <MessageCircle className="h-4 w-4 text-accent" /> WhatsApp
                 </a>
               </li>
               <li>
