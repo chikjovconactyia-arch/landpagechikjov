@@ -14,6 +14,7 @@ import {
   Sofa,
   Phone,
   Instagram,
+  MessageCircle,
   Mail,
   MapPin,
   Clock,
