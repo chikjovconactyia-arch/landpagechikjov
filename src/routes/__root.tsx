@@ -77,16 +77,30 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "ChicJov Studio | Beleza, Estética e Bem-estar" },
+      {
+        name: "description",
+        content:
+          "ChicJov Studio em Santa Efigênia: cabelos, estética facial e corporal com atendimento exclusivo. Agende agora pelo WhatsApp.",
+      },
+      { name: "author", content: "ChicJov Studio" },
+      { name: "theme-color", content: "#8E44AD" },
+      { property: "og:title", content: "ChicJov Studio | Beleza & Estética" },
+      {
+        property: "og:description",
+        content:
+          "Transformamos autoestima em confiança através da beleza, estética e bem-estar. Agende seu horário.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap",
+      },
       {
         rel: "stylesheet",
         href: appCss,
