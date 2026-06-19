@@ -26,14 +26,18 @@ import { WhatsAppFloat } from "@/components/site/WhatsAppFloat";
 import { CTAButton } from "@/components/site/CTAButton";
 import { Reveal } from "@/components/site/Reveal";
 import { Logo } from "@/components/site/Logo";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "@/components/ui/carousel";
 import { site, waLink, waMessages } from "@/lib/site";
 
-import heroImg from "@/assets/hero.jpg";
-import ambienteImg from "@/assets/ambiente.jpg";
 import cabelosImg from "@/assets/service-cabelos.jpg";
 import facialImg from "@/assets/service-facial.jpg";
 import corporalImg from "@/assets/service-corporal.jpg";
-import crioImg from "@/assets/criolipolise.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -115,12 +119,12 @@ const crioBenefits = [
 ];
 
 const results = [
-  { label: "Mechas", image: cabelosImg },
-  { label: "Coloração", image: cabelosImg },
-  { label: "Tratamentos Faciais", image: facialImg },
-  { label: "Criolipólise", image: crioImg },
-  { label: "Hidratação Capilar", image: cabelosImg },
-  { label: "Estética Corporal", image: corporalImg },
+  { label: "Mechas", image: "/mechas.jpeg" },
+  { label: "Coloração", image: "/Coloração.jpeg" },
+  { label: "Tratamentos Faciais", image: "/facial.jpeg" },
+  { label: "Criolipólise", image: "/Criolipólise.jpeg" },
+  { label: "Hidratação Capilar", image: "/hidratação.jpeg" },
+  { label: "Estética Corporal", image: "/Estética%20Corporal.jpeg" },
 ];
 
 const differentials = [
@@ -174,9 +178,21 @@ const testimonials = [
 ];
 
 const team = [
-  { name: "Especialistas Capilares", role: "Cabelos & Coloração", initials: "EC" },
-  { name: "Biomédica Esteta", role: "Estética Avançada", initials: "BE" },
-  { name: "Equipe de Atendimento", role: "Experiência & Cuidado", initials: "EA" },
+  {
+    name: "Especialistas Capilares",
+    role: "Cabelos & Coloração",
+    image: "/Agência%20(4).png",
+  },
+  {
+    name: "Biomédica Esteta",
+    role: "Estética Avançada",
+    image: "/Agência%20(3).png",
+  },
+  {
+    name: "Equipe de Atendimento",
+    role: "Experiência & Cuidado",
+    image: "/Agência%20(2).png",
+  },
 ];
 
 function Index() {
@@ -188,7 +204,7 @@ function Index() {
         {/* SEÇÃO 1 - HERO */}
         <section className="relative flex min-h-screen items-center">
           <img
-            src={heroImg}
+            src="/foto-hero.jpeg"
             alt="Mulher elegante com cabelo impecável e pele saudável"
             width={1920}
             height={1080}
@@ -209,7 +225,7 @@ function Index() {
               </p>
               <div className="mt-9 flex flex-wrap gap-4">
                 <CTAButton
-                  href={waLink(waMessages.agendar)}
+                  href={site.bookingUrl}
                   target="_blank"
                   rel="noopener"
                   variant="orange"
@@ -241,12 +257,12 @@ function Index() {
             <Reveal>
               <div className="relative">
                 <img
-                  src={ambienteImg}
+                  src="/sobre%20a%20chikjov.jpeg"
                   alt="Ambiente elegante do ChicJov Studio"
                   width={1024}
                   height={1024}
                   loading="lazy"
-                  className="rounded-3xl object-cover shadow-card"
+                  className="rounded-3xl object-cover shadow-card aspect-square w-full"
                 />
                 <div className="absolute -bottom-6 -right-4 hidden rounded-2xl bg-gradient-brand px-7 py-5 text-primary-foreground shadow-orange sm:block">
                   <p className="font-display text-3xl font-semibold">+10</p>
@@ -355,7 +371,7 @@ function Index() {
           <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-5 lg:grid-cols-2 lg:px-8">
             <Reveal>
               <img
-                src={crioImg}
+                src="/Criolipólise.jpeg"
                 alt="Procedimento de Criolipólise"
                 width={1024}
                 height={1024}
@@ -410,28 +426,41 @@ function Index() {
               </h2>
             </Reveal>
           </div>
-          <div className="mt-14 flex snap-x snap-mandatory gap-6 overflow-x-auto px-5 pb-6 lg:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {results.map((r, i) => (
-              <Reveal key={i} delay={(i % 3) * 100}>
-                <article className="group relative h-80 w-72 shrink-0 snap-start overflow-hidden rounded-3xl shadow-soft sm:w-80">
-                  <img
-                    src={r.image}
-                    alt={`Resultado de ${r.label}`}
-                    width={1000}
-                    height={1200}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/10 to-transparent" />
-                  <span className="absolute left-4 top-4 rounded-full bg-accent px-3 py-1 text-xs font-semibold uppercase tracking-wider text-accent-foreground">
-                    Antes & Depois
-                  </span>
-                  <h3 className="absolute bottom-5 left-5 font-display text-2xl font-semibold text-primary-foreground">
-                    {r.label}
-                  </h3>
-                </article>
-              </Reveal>
-            ))}
+          <div className="mx-auto mt-14 max-w-7xl px-5 lg:px-8">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-6">
+                {results.map((r, i) => (
+                  <CarouselItem key={i} className="pl-6 basis-full md:basis-1/2 lg:basis-1/3">
+                    <Reveal delay={(i % 3) * 100}>
+                      <article className="group relative h-80 w-full overflow-hidden rounded-3xl shadow-soft">
+                        <img
+                          src={r.image}
+                          alt={`Resultado de ${r.label}`}
+                          width={1000}
+                          height={1200}
+                          loading="lazy"
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/10 to-transparent" />
+                        <h3 className="absolute bottom-5 left-5 font-display text-2xl font-semibold text-primary-foreground">
+                          {r.label}
+                        </h3>
+                      </article>
+                    </Reveal>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <div className="mt-8 flex justify-center gap-4">
+                <CarouselPrevious className="static translate-y-0" />
+                <CarouselNext className="static translate-y-0" />
+              </div>
+            </Carousel>
           </div>
         </section>
 
@@ -515,9 +544,13 @@ function Index() {
               {team.map((m, i) => (
                 <Reveal key={m.name} delay={i * 120}>
                   <div className="flex flex-col items-center text-center">
-                    <span className="flex h-32 w-32 items-center justify-center rounded-full bg-gradient-brand font-display text-4xl font-semibold text-primary-foreground shadow-card ring-8 ring-card">
-                      {m.initials}
-                    </span>
+                    <img
+                      src={m.image}
+                      alt={m.name}
+                      width={128}
+                      height={128}
+                      className="h-32 w-32 rounded-full object-cover shadow-card ring-8 ring-card"
+                    />
                     <h3 className="mt-5 font-display text-xl font-semibold text-foreground">
                       {m.name}
                     </h3>
@@ -542,26 +575,26 @@ function Index() {
                   Chegou a Hora de Cuidar de Você
                 </h2>
                 <p className="mx-auto mt-5 max-w-xl text-lg text-primary-foreground/90">
-                  Agende seu horário e descubra uma nova experiência em beleza e bem-estar.
+                  O Studio ChicJov possui 2 unidades para melhor te atender. Escolha a unidade mais próxima e agende seu horário:
                 </p>
-                <div className="mt-9 flex flex-wrap justify-center gap-4">
+                <div className="mt-9 flex flex-col sm:flex-row flex-wrap justify-center gap-4">
                   <CTAButton
-                    href={waLink(waMessages.agendar)}
+                    href="https://sites.appbeleza.com.br/chikjovstudio-7dbd"
                     target="_blank"
                     rel="noopener"
                     variant="orange"
                     size="lg"
                   >
-                    Agendar pelo WhatsApp
+                    Agendar - Santa Efigênia
                   </CTAButton>
                   <CTAButton
-                    href={waLink(waMessages.avaliacao)}
+                    href="https://sites.appbeleza.com.br/chikjovstudioju-w657"
                     target="_blank"
                     rel="noopener"
                     variant="light"
                     size="lg"
                   >
-                    Solicitar Avaliação
+                    Agendar - Justinópolis
                   </CTAButton>
                 </div>
               </div>

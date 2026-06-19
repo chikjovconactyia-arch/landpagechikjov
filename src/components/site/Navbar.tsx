@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { CTAButton } from "./CTAButton";
-import { waLink, waMessages } from "@/lib/site";
+import { site, waLink, waMessages } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 const links = [
@@ -55,7 +55,7 @@ export function Navbar() {
         </div>
 
         <div className="hidden lg:block">
-          <CTAButton href={waLink(waMessages.agendar)} target="_blank" rel="noopener" size="sm">
+          <CTAButton href={site.bookingUrl} target="_blank" rel="noopener" size="sm">
             Agendar Agora
           </CTAButton>
         </div>
@@ -87,7 +87,7 @@ export function Navbar() {
             ))}
           </div>
           <CTAButton
-            href={waLink(waMessages.agendar)}
+            href={site.bookingUrl}
             target="_blank"
             rel="noopener"
             className="mt-3 w-full"

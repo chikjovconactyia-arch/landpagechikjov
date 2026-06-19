@@ -10,6 +10,7 @@ export const site = {
   address: "Santa Efigênia, Belo Horizonte - MG",
   hours: "Seg a Sáb · 08h00 às 19h00",
   mapsUrl: "https://www.google.com/maps/search/?api=1&query=Santa+Efigênia+Belo+Horizonte",
+  bookingUrl: "https://sites.appbeleza.com.br/chikjovstudio-7dbd",
 };
 
 export function waLink(message: string) {
