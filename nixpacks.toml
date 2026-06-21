@@ -1,8 +1,1 @@
-[providers]
-node = {}
-
-[build]
-cmd = "npm run build"
-
-[start]
-cmd = "npm run start"
+providers = ["node"]
